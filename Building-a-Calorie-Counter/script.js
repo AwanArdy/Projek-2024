@@ -25,3 +25,5 @@ function addEntry() {
     <input type="text" id="${entryDropdown.value}-${entryNumber}-name" placeholder="Name" />
     <label for="${entryDropdown.value}-${entryNumber}-calories">Entry ${entryNumber} Calories</label>`;
 }
+
+// test

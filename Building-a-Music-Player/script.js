@@ -98,6 +98,9 @@ const playSong = (id) => {
   userData.currentSong = song;
   playButton.classList.add("playing");
 
+  highlightCurrentSong();
+  setPlayerDisplay();
+  setPlayButtonAccessibleText();
   audio.play;
 };
 
@@ -117,6 +120,39 @@ const playNextSong = () => {
 
     playSong(nextSong.id);
   }
+};
+
+const playPreviousSong = () => {
+  if (userData?.currentSong === null) return;
+  else {
+    const currentSongIndex = getCurrenrSongIndex();
+    const previousSong = userData?.songs[currentSongIndex - 1];
+
+    playSong(previousSong.id);
+  }
+};
+
+const setPlayerDisplay = () => {
+  const playingSong = document.getElementById("player-song-title");
+  const songArtist = document.getElementById("player-song-artist");
+  const currentTitle = userData?.currentSong?.title;
+  const currentArtist = userData?.currentSong?.artist;
+
+  playingSong.textContent = currentTitle ? currentTitle : "";
+  songArtist.textContent = currentArtist ? currentArtist : "";
+};
+
+const highlightCurrentSong = () => {
+  const playlistSongELements = document.querySelectorAll(".playlist-song");
+  const songToHighlight = document.getElementById(
+    `song-${userData?.currentSong?.id}`
+  );
+
+  playlistSongELements.forEach((songEl) => {
+    songEl.removeAttribute("aria-current");
+  });
+
+  if (songToHighlight) songToHighlight.setAttribute("aria-current", "true");
 };
 
 const renderSongs = (array) => {
@@ -141,7 +177,16 @@ const renderSongs = (array) => {
   playlistSongs.innerHTML = songsHTML;
 };
 
-const getCurrenrSongIndex = () => userData?.songs.indexOf(userData.currentSong);
+const setPlayButtonAccessibleText = () => {
+  const song = userData?.currentSong || userData?.songs[0];
+
+  playButton.setAttribute(
+    "aria-label",
+    song?.title ? `Play ${song.title}` : "Play"
+  );
+};
+
+const getCurrentSongIndex = () => userData?.songs.indexOf(userData.currentSong);
 
 playButton.addEventListener("click", () => {
   if (userData?.currentSong === null) {
@@ -154,5 +199,7 @@ playButton.addEventListener("click", () => {
 pauseButton.addEventListener("click", pauseSong);
 
 nextButton.addEventListener("click", playNextSong);
+
+previousButton.addEventListener("click", playPreviousSong);
 
 renderSongs(userData?.songs);

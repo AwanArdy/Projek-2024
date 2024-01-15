@@ -1,0 +1,40 @@
+# Variabel Global dan Inisialisasi:
+
+- `xp`: Poin pengalaman karakter
+- `health`: Nilai kesehatan karakter
+- `gold`:Jumlah emas yang dimiliki karakter
+- `currentWeapon`: Indeks senjata yang sedang digunakan
+- `fighting`: Menyimpan indeks monster yang sedang dihadapi
+- `monsterHealth`: Menyimpan nilai kesehatan monster
+- `inventory`: Array yang berisi daftar senjata yang dimiliki karakter
+- Berbagai elemen HTML seperti tombol dan teks diidentifikasi menggunakan `document.querySelector()`
+
+# Array dan Objek:
+
+- `weapons`: Array yang berisi objek-objek dengan properti `name` (nama senjata) dan `power` (kekuatan senjata)
+- `locations`: Array yang berisi objek-objek lokasi dengan properti `name` (nama lokasi), `button text` (teks tombol), `button functions` (fungsi tombol), dan `text` (deskripsi lokasi)
+- `monsters`: Array yang berisi objek-objek monster dengan properti `name` (nama monster), `level` (level monster), dan `health` (kesehatan monster)
+
+# Fungsi Utama:
+
+- `update(location)`: Mengganti tampilan game berdasarkan lokasi yang diberikan
+- `goTown()`, `goStore()`, `goCave()`, `goFight()`: Mengarahkan karakter ke lokasi tertentu
+- `buyHealth()`, `buyWeapon()`, `sellWeapon()`: Mengelola transaksi beli dan jual
+- `fightSlime`, `fightBeast()`, `fightDragon()`: Memulai pertarungan dengan monster tertentu
+- `attack()`, `getMonsterAttackValue(level)`, `isMonsterHit()`, `dodge()`: Mengelola mekanisme pertarungan
+- `defeatMonster()`, `lose()`, `winGame()`: Mengatasi hasil pertarungan
+- `restart()`: Mengatur ulang nilai-nilai ke awal dan memulai kembali permainan
+- `easterEgg()`, `pick(guess)`, `pickTwo()`, `pickEight()`: Menangani fitur easter egg
+
+# Event Handler dan DOM Manipulation:
+
+- Mengatur event handler untuk tombol-tombol pada halaman web
+- Melakukan manipulasi teks pada elemen-elemen HTML untuk menampilkan informasi permainan
+
+# Fitur Tambahan:
+
+- Sistem pertarungan dengan kemungkinan serangan, perlindungan, dan kemungkinan kerusakan senjata
+- Pembelian kesehatan dan senjata di toko
+- Penjualan senjata dengan kondisi tertentu
+- Sistem monster dengan tingkatan level dan kesehatan
+- Fitur easter egg dengan permainan menebak angka
